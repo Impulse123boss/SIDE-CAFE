@@ -1,0 +1,43 @@
+.dashboard-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.dashboard-container h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.dashboard-container span {
+  color: #2979ff;
+}
+
+.subtext {
+  color: #555;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+.card-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  background-color: #f0f7ff;
+}

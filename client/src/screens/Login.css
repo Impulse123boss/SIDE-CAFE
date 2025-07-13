@@ -1,0 +1,89 @@
+.login-container {
+  max-width: 400px;
+  margin: 60px auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.brand {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.brand span {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  letter-spacing: 1.5px;
+  margin-top: -4px;
+}
+
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+}
+
+input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+button {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
+  background-color: #2979ff;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+button:hover {
+  background-color: #1c54b2;
+}
+
+.divider {
+  margin: 1rem 0;
+  color: #aaa;
+  font-size: 0.85rem;
+}
+
+.forgot-password {
+  font-size: 0.9rem;
+  color: #2979ff;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.phone-login {
+  background-color: #2979ff;
+  font-weight: 500;
+}
+
+.signup-text {
+  font-size: 0.9rem;
+  margin-top: 1.5rem;
+}
+
+.signup-text span {
+  color: #2979ff;
+  cursor: pointer;
+}
