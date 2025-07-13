@@ -4,7 +4,8 @@ import Login from './screens/Login';
 import Dashboard from './screens/Dashboard';
 import Upload from './screens/Upload';
 import Preview from './screens/Preview';
-
+import ColorSelection from './screens/ColorSelection';
+import Summary from './screens/Summary';
 
 
 export default function App() {
@@ -15,6 +16,9 @@ export default function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/upload" element={<Upload />} />
         <Route path="/preview" element={<Preview />} />
+        <Route path="/color-selection" element={<ColorSelection />} />
+        <Route path="/summary" element={<Summary />} />
+
         {/* Add more screens like /qr, /jobs, /machines here later */}
       </Routes>
     </Router>
