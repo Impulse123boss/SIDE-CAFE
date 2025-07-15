@@ -32,14 +32,15 @@ export default function Upload() {
     if (pageSelection === 'specific') {
       navigate('/preview', { state: { file, printMode } });
     } else {
-      // Load the PDF to get total number of pages and send them
       const reader = new FileReader();
       reader.onload = function () {
         const typedArray = new Uint8Array(this.result);
         pdfjs.getDocument(typedArray).promise.then((pdf) => {
           const allPages = Array.from({ length: pdf.numPages }, (_, i) => i + 1);
+          const colorPages = printMode === 'color' ? allPages : [];
+
           navigate('/summary', {
-            state: { file, printMode, selectedPages: allPages },
+            state: { file, printMode, selectedPages: allPages, colorPages },
           });
         });
       };
@@ -48,58 +49,86 @@ export default function Upload() {
   };
 
   return (
-    <div className="upload-container">
-      <h2>Upload Document</h2>
+    <div className="upload-card">
+      <h2 className="card-title">Upload Document</h2>
+      <div className="card-section">
+        <label htmlFor="file-upload" className="file-label">Select PDF file</label>
+        <input
+          id="file-upload"
+          type="file"
+          accept="application/pdf"
+          onChange={handleFileChange}
+          className="file-input"
+        />
+      </div>
 
-      <input
-        type="file"
-        accept="application/pdf"
-        onChange={handleFileChange}
-      />
-
-      <div className="option-row">
+      <div className="card-section">
         <div className="option-group">
-          <label className="radio-option">
-            <input
-              type="radio"
-              name="mode"
-              value="bw"
-              checked={printMode === 'bw'}
-              onChange={() => setPrintMode('bw')}
-            />
+          <span className="option-label">Print Mode:</span>
+          <input
+            type="radio"
+            id="mode-bw"
+            name="mode"
+            value="bw"
+            checked={printMode === 'bw'}
+            onChange={() => setPrintMode('bw')}
+            className="hidden-radio"
+          />
+          <label
+            htmlFor="mode-bw"
+            className={`toggle-label${printMode === 'bw' ? ' selected' : ''}`}
+          >
             B/W
           </label>
-          <label className="radio-option">
-            <input
-              type="radio"
-              name="mode"
-              value="color"
-              checked={printMode === 'color'}
-              onChange={() => setPrintMode('color')}
-            />
+          <input
+            type="radio"
+            id="mode-color"
+            name="mode"
+            value="color"
+            checked={printMode === 'color'}
+            onChange={() => setPrintMode('color')}
+            className="hidden-radio"
+          />
+          <label
+            htmlFor="mode-color"
+            className={`toggle-label${printMode === 'color' ? ' selected' : ''}`}
+          >
             Color
           </label>
         </div>
+      </div>
 
-        <div className="option-group pages">
-          <label className="radio-option">
-            <input
-              type="radio"
-              name="pages"
-              value="all"
-              checked={pageSelection === 'all'}
-              onChange={() => setPageSelection('all')}
-            />
+      <div className="card-section">
+        <div className="option-group">
+          <span className="option-label">Pages:</span>
+          <input
+            type="radio"
+            id="pages-all"
+            name="pages"
+            value="all"
+            checked={pageSelection === 'all'}
+            onChange={() => setPageSelection('all')}
+            className="hidden-radio"
+          />
+          <label
+            htmlFor="pages-all"
+            className={`toggle-label${pageSelection === 'all' ? ' selected' : ''}`}
+          >
             Print all pages
           </label>
-          <label className="radio-option">
-            <input
-              type="radio"
-              name="pages"
-              value="specific"
-              checked={pageSelection === 'specific'}
-              onChange={() => setPageSelection('specific')}
-            />
+          <input
+            type="radio"
+            id="pages-specific"
+            name="pages"
+            value="specific"
+            checked={pageSelection === 'specific'}
+            onChange={() => setPageSelection('specific')}
+            className="hidden-radio"
+          />
+          <label
+            htmlFor="pages-specific"
+            className={`toggle-label${pageSelection === 'specific' ? ' selected' : ''}`}
+          >
             Select specific pages
           </label>
         </div>
