@@ -1,19 +1,20 @@
-// routes/printJobRoutes.js
 import express from 'express';
-import multer from 'multer';
-import { createPrintJob } from '../controllers/printJobController.js';
+import {
+  upload,
+  createPrintJob,
+  getAllPrintJobs,
+  getPrintJobById,
+} from '../controllers/printJobController.js';
 
 const router = express.Router();
 
-const storage = multer.diskStorage({
-  destination: 'uploads/',
-  filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname}`);
-  },
-});
+// POST: Create new print job with file upload
+router.post('/print-jobs', upload, createPrintJob);
 
-const upload = multer({ storage });
+// GET: Fetch all submitted print jobs
+router.get('/print-jobs', getAllPrintJobs);
 
-router.post('/print-jobs', upload.single('file'), createPrintJob);
+// GET: Fetch a single print job by ID
+router.get('/print-jobs/:id', getPrintJobById);
 
 export default router;

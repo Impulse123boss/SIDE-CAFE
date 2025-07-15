@@ -1,4 +1,4 @@
-// src/screens/Upload.js
+// ✅ src/screens/Upload.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { pdfjs } from 'react-pdf';
@@ -65,78 +65,26 @@ export default function Upload() {
       <div className="card-section">
         <div className="option-group">
           <span className="option-label">Print Mode:</span>
-          <input
-            type="radio"
-            id="mode-bw"
-            name="mode"
-            value="bw"
-            checked={printMode === 'bw'}
-            onChange={() => setPrintMode('bw')}
-            className="hidden-radio"
-          />
-          <label
-            htmlFor="mode-bw"
-            className={`toggle-label${printMode === 'bw' ? ' selected' : ''}`}
-          >
-            B/W
-          </label>
-          <input
-            type="radio"
-            id="mode-color"
-            name="mode"
-            value="color"
-            checked={printMode === 'color'}
-            onChange={() => setPrintMode('color')}
-            className="hidden-radio"
-          />
-          <label
-            htmlFor="mode-color"
-            className={`toggle-label${printMode === 'color' ? ' selected' : ''}`}
-          >
-            Color
-          </label>
+          <input type="radio" id="mode-bw" name="mode" value="bw" checked={printMode === 'bw'} onChange={() => setPrintMode('bw')} className="hidden-radio" />
+          <label htmlFor="mode-bw" className={`toggle-label${printMode === 'bw' ? ' selected' : ''}`}>B/W</label>
+
+          <input type="radio" id="mode-color" name="mode" value="color" checked={printMode === 'color'} onChange={() => setPrintMode('color')} className="hidden-radio" />
+          <label htmlFor="mode-color" className={`toggle-label${printMode === 'color' ? ' selected' : ''}`}>Color</label>
         </div>
       </div>
 
       <div className="card-section">
         <div className="option-group">
           <span className="option-label">Pages:</span>
-          <input
-            type="radio"
-            id="pages-all"
-            name="pages"
-            value="all"
-            checked={pageSelection === 'all'}
-            onChange={() => setPageSelection('all')}
-            className="hidden-radio"
-          />
-          <label
-            htmlFor="pages-all"
-            className={`toggle-label${pageSelection === 'all' ? ' selected' : ''}`}
-          >
-            Print all pages
-          </label>
-          <input
-            type="radio"
-            id="pages-specific"
-            name="pages"
-            value="specific"
-            checked={pageSelection === 'specific'}
-            onChange={() => setPageSelection('specific')}
-            className="hidden-radio"
-          />
-          <label
-            htmlFor="pages-specific"
-            className={`toggle-label${pageSelection === 'specific' ? ' selected' : ''}`}
-          >
-            Select specific pages
-          </label>
+          <input type="radio" id="pages-all" name="pages" value="all" checked={pageSelection === 'all'} onChange={() => setPageSelection('all')} className="hidden-radio" />
+          <label htmlFor="pages-all" className={`toggle-label${pageSelection === 'all' ? ' selected' : ''}`}>Print all pages</label>
+
+          <input type="radio" id="pages-specific" name="pages" value="specific" checked={pageSelection === 'specific'} onChange={() => setPageSelection('specific')} className="hidden-radio" />
+          <label htmlFor="pages-specific" className={`toggle-label${pageSelection === 'specific' ? ' selected' : ''}`}>Select specific pages</label>
         </div>
       </div>
 
-      <button className="upload-button" onClick={handleContinue}>
-        Continue
-      </button>
+      <button className="upload-button" onClick={handleContinue}>Continue</button>
     </div>
   );
 }

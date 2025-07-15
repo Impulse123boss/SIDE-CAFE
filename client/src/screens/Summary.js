@@ -1,9 +1,8 @@
-// src/screens/Summary.js
+// ✅ src/screens/Summary.js
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './Summary.css';
 
-// Utility: Format page ranges like "1-3, 5, 7-9"
 function formatPageRanges(pages) {
   if (!pages || pages.length === 0) return '';
   const sorted = [...pages].sort((a, b) => a - b);
@@ -25,7 +24,6 @@ export default function Summary() {
   const navigate = useNavigate();
   const location = useLocation();
   const { file, printMode, selectedPages, colorPages = [] } = location.state || {};
-
   const [copies, setCopies] = useState(1);
   const [isDuplex, setIsDuplex] = useState(false);
 
@@ -42,14 +40,14 @@ export default function Summary() {
     const formData = new FormData();
     formData.append('file', file);
     formData.append('printMode', printMode);
-    formData.append('selectedPages', JSON.stringify(selectedPages));
-    formData.append('colorPages', JSON.stringify(colorPages));
-    formData.append('totalPages', numPages);
+    formData.append('selectedPages', selectedPages.join(','));
+    formData.append('colorPages', colorPages.join(','));
+    formData.append('totalPages', selectedPages.length);
     formData.append('copies', copies);
     formData.append('duplex', isDuplex);
 
     try {
-      const response = await fetch('http://localhost:5000/print-jobs', {
+      const response = await fetch('http://192.168.238.73:5000/print-jobs', {
         method: 'POST',
         body: formData,
       });
@@ -68,20 +66,17 @@ export default function Summary() {
   return (
     <div className="summary-container">
       <h2>Print Summary</h2>
-
       <div className="summary-card">
         <p><strong>File:</strong> {fileName}</p>
         <p><strong>Print Mode:</strong> {printMode === 'bw' ? 'Black & White' : 'Color'}</p>
         <p><strong>Pages Selected:</strong> {formatPageRanges(selectedPages)}</p>
         <p><strong>Total Pages:</strong> {numPages}</p>
-
         {printMode === 'color' && (
           <>
             <p><strong>Pages in Color:</strong> {formatPageRanges(colorPages)}</p>
             <p><strong>Pages in B/W:</strong> {bwCount}</p>
           </>
         )}
-
         <div className="duplex-toggle">
           <button
             type="button"
@@ -91,7 +86,6 @@ export default function Summary() {
             {isDuplex ? 'Duplex Printing: ON' : 'Duplex Printing: OFF'}
           </button>
         </div>
-
         <label className="copies-label">
           <strong>Number of Copies:</strong>
           <input

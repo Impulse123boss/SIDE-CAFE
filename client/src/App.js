@@ -6,6 +6,8 @@ import Upload from './screens/Upload';
 import Preview from './screens/Preview';
 import ColorSelection from './screens/ColorSelection';
 import Summary from './screens/Summary';
+import PrintJobs from './screens/PrintJobs';
+import PrintJobDetail from './screens/PrintJobDetails';
 
 
 export default function App() {
@@ -18,6 +20,9 @@ export default function App() {
         <Route path="/preview" element={<Preview />} />
         <Route path="/color-selection" element={<ColorSelection />} />
         <Route path="/summary" element={<Summary />} />
+        <Route path="/jobs" element={<PrintJobs />} />
+        <Route path="/print-job/:id" element={<PrintJobDetail />} />
+
 
         {/* Add more screens like /qr, /jobs, /machines here later */}
       </Routes>

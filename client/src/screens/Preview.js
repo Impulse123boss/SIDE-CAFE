@@ -1,4 +1,4 @@
-// src/screens/Preview.js
+// ✅ src/screens/Preview.js
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Document, Page, pdfjs } from 'react-pdf';
@@ -30,23 +30,19 @@ export default function Preview() {
   const handleDocumentLoad = ({ numPages }) => {
     setNumPages(numPages);
     const allPages = Array.from({ length: numPages }, (_, i) => i + 1);
-    setSelectedPages(allPages); // select all by default
-    setColorPages(printMode === 'color' ? allPages : []); // all color by default
+    setSelectedPages(allPages);
+    setColorPages(printMode === 'color' ? allPages : []);
   };
 
   const handlePageSelect = (pageNum) => {
     setSelectedPages((prev) =>
-      prev.includes(pageNum)
-        ? prev.filter((p) => p !== pageNum)
-        : [...prev, pageNum]
+      prev.includes(pageNum) ? prev.filter((p) => p !== pageNum) : [...prev, pageNum]
     );
   };
 
   const handleColorSelect = (pageNum) => {
     setColorPages((prev) =>
-      prev.includes(pageNum)
-        ? prev.filter((p) => p !== pageNum)
-        : [...prev, pageNum]
+      prev.includes(pageNum) ? prev.filter((p) => p !== pageNum) : [...prev, pageNum]
     );
   };
 
@@ -77,7 +73,6 @@ export default function Preview() {
   return (
     <div className="preview-container">
       <h2>Select Pages to Print</h2>
-
       <div className="preview-controls">
         <button onClick={handleSelectAll}>Select All</button>
         <button onClick={handleClearAll}>Clear All</button>
@@ -114,9 +109,7 @@ export default function Preview() {
         </div>
       </Document>
 
-      <button onClick={handleContinue} className="preview-continue-button">
-        Continue
-      </button>
+      <button onClick={handleContinue} className="preview-continue-button">Continue</button>
     </div>
   );
 }
